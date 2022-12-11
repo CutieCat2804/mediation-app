@@ -6,9 +6,7 @@ function toggleTimer() {
   const stopSvg = document.querySelector(".stop-icon");
   const circle = document.querySelector("#animation");
 
-  if (
-    document.querySelector(".invisible").classList.contains("stop-icon")
-  ) {
+  if (document.querySelector(".invisible").classList.contains("stop-icon")) {
     playSvg.classList.add("invisible");
     stopSvg.classList.remove("invisible");
     circle.style.animation = `load ${timeInSeconds}s linear forwards`;
@@ -18,10 +16,7 @@ function toggleTimer() {
       .forEach((button) => (button.disabled = true));
 
     let target = new Date().valueOf() + timeInSeconds * 1000;
-    interval = setInterval(
-      () => timer(target, playSvg, stopSvg, circle),
-      100
-    );
+    interval = setInterval(() => timer(target, playSvg, stopSvg, circle), 100);
   } else {
     stopSvg.classList.add("invisible");
     playSvg.classList.remove("invisible");
@@ -60,11 +55,10 @@ function timer(target, playSvg, stopSvg, circle) {
     document
       .querySelectorAll(".time-picker-button")
       .forEach((button) => (button.disabled = false));
+    document.querySelector("#audio").play();
     clearInterval(interval);
   } else {
-    document.querySelector(
-      "#timeDisplay"
-    ).innerHTML = `${minutes}:${seconds}`;
+    document.querySelector("#timeDisplay").innerHTML = `${minutes}:${seconds}`;
   }
 }
 
