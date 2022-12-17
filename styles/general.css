@@ -7,6 +7,7 @@
 body {
   background: #a9c9d1;
 }
+
 .container {
   height: 80vh;
   display: flex;
@@ -19,7 +20,6 @@ body {
 h1 {
   color: #fff;
   display: flex;
-  justify-content: center;
   margin-top: 32px;
   font-size: 54px;
 }
@@ -41,6 +41,7 @@ button {
   border: none;
   cursor: pointer;
   outline: none;
+  width: fit-content;
 }
 
 .time-picker {
@@ -79,4 +80,8 @@ button {
 .time-picker-button:disabled {
   background: gray;
   cursor: not-allowed;
+}
+.header {
+  display: flex;
+  justify-content: center;
 }

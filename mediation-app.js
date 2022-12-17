@@ -1,3 +1,28 @@
+let selectedButtonId = "no-audio-button-id";
+let selectedBackgroundId = "blue-background-id";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.querySelector("#modal-id");
+  const button = document.querySelector("#menu-button");
+  const span = document.querySelector(".close-icon");
+
+  button.addEventListener("click", function () {
+    modal.style.display = "block";
+    setButtonToActive(selectedButtonId);
+    setBackgroundToActive(selectedBackgroundId);
+  });
+
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+});
+
 let timeInSeconds = 300;
 let interval;
 
@@ -66,4 +91,45 @@ function setTimer(time) {
   timeInSeconds = time;
 
   document.querySelector("#timeDisplay").innerHTML = `${time / 60}:00`;
+}
+
+function stopAllAudios() {
+  document.querySelectorAll("audio").forEach((audio) => audio.pause());
+  const activeButton = document.querySelector(".active-menu-button");
+  if (activeButton) {
+    activeButton.classList.remove("active-menu-button");
+  }
+}
+
+function setButtonToActive(buttonId) {
+  selectedButtonId = buttonId;
+  document.getElementById(selectedButtonId).classList.add("active-menu-button");
+}
+
+function playAudio(audio, buttonId) {
+  selectedAudio = audio;
+  document.getElementById(audio).play();
+  setButtonToActive(buttonId);
+}
+
+function removeAllActiveBackgrounds() {
+  const activeImage = document.querySelector(".active-background-image");
+  if (activeImage) {
+    activeImage.classList.remove("active-background-image");
+  }
+}
+
+function setBackgroundToActive(backgroundId) {
+  selectedBackgroundId = backgroundId;
+  document.getElementById(selectedBackgroundId).classList.add("active-background-image");
+}
+
+function setBackgroundImage(url) {
+  document.body.style.backgroundColor = "none";
+  document.body.style = `background-image: url(${url}); background-repeat: no-repeat; background-size: 100vw 100vh;`;
+}
+
+function setBackgroundColor(color) {
+  document.body.style = `background-image: none; background-repeat: none; background-size: none;`;
+  document.body.style.backgroundColor = color;
 }

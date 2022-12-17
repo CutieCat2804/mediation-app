@@ -5,12 +5,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/general.css" />
     <link rel="stylesheet" href="styles/timer.css" />
+    <link rel="stylesheet" href="styles/menu.css" />
     <script type="text/javascript" src="mediation-app.js"></script>
     <title>Meditation App</title>
   </head>
 
   <body>
-    <h1>Time to meditate!</h1>
+    <div class="header">
+      <h1>Time to meditate!</h1>
+      <button id="menu-button" class="menu-icon-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+          <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path
+            d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div id="modal-id" class="modal">
+      <div class="modal-content">
+        <span class="close-icon">&times;</span>
+        <div class="menu-column">
+          <h2>Menu</h2>
+          <h3>Background Music</h3>
+          <div class="menu-row">
+            <button
+              id="rain-audio-button-id"
+              class="menu-button"
+              onclick="stopAllAudios(); playAudio('rain-audio', 'rain-audio-button-id')"
+            >
+              <svg
+                class="sound-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                  d="M301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM412.6 181.5C434.1 199.1 448 225.9 448 256s-13.9 56.9-35.4 74.5c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C393.1 284.4 400 271 400 256s-6.9-28.4-17.7-37.3c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5z"
+                />
+              </svg>
+              Rain
+            </button>
+            <button
+              id="bird-audio-button-id"
+              class="menu-button"
+              onclick="stopAllAudios(); playAudio('bird-audio', 'bird-audio-button-id')"
+            >
+              <svg
+                class="sound-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                  d="M301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM412.6 181.5C434.1 199.1 448 225.9 448 256s-13.9 56.9-35.4 74.5c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C393.1 284.4 400 271 400 256s-6.9-28.4-17.7-37.3c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5z"
+                />
+              </svg>
+              Birds
+            </button>
+            <button
+              id="waves-audio-button-id"
+              class="menu-button"
+              onclick="stopAllAudios(); playAudio('waves-audio', 'waves-audio-button-id')"
+            >
+              <svg
+                class="sound-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                  d="M301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM412.6 181.5C434.1 199.1 448 225.9 448 256s-13.9 56.9-35.4 74.5c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C393.1 284.4 400 271 400 256s-6.9-28.4-17.7-37.3c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5z"
+                />
+              </svg>
+              Waves
+            </button>
+            <button
+              id="no-audio-button-id"
+              class="menu-button"
+              onclick="stopAllAudios(); setButtonToActive('no-audio-button-id')"
+            >
+              <svg
+                class="sound-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
+                <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                  d="M301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM412.6 181.5C434.1 199.1 448 225.9 448 256s-13.9 56.9-35.4 74.5c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C393.1 284.4 400 271 400 256s-6.9-28.4-17.7-37.3c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5z"
+                />
+              </svg>
+              None
+            </button>
+            <audio id="rain-audio" src="sounds/rain.mp3" loop></audio>
+            <audio id="bird-audio" src="sounds/bird.mp3" loop></audio>
+            <audio id="waves-audio" src="sounds/waves.mp3" loop></audio>
+          </div>
+          <h3>Background Image</h3>
+          <div class="menu-row">
+            <button
+              id="blue-background-id"
+              class="background-color-box"
+              style="background-color: #c1daf0"
+              onclick="removeAllActiveBackgrounds(); setBackgroundToActive('blue-background-id'); setBackgroundColor('#c1daf0') "
+            ></button>
+            <div
+              id="pink-background-id"
+              class="background-color-box"
+              style="background-color: #f5a6f8"
+              onclick="removeAllActiveBackgrounds(); setBackgroundToActive('pink-background-id'); setBackgroundColor('#f5a6f8')"
+            ></div>
+            <div
+              id="orange-background-id"
+              class="background-color-box"
+              style="background-color: #fc9667"
+              onclick="removeAllActiveBackgrounds(); setBackgroundToActive('orange-background-id'); setBackgroundColor('#fc9667')"
+            ></div>
+            <div
+              id="purple-background-id"
+              class="background-color-box"
+              style="background-color: #bab6ff"
+              onclick="removeAllActiveBackgrounds(); setBackgroundToActive('purple-background-id'); setBackgroundColor('#bab6ff')"
+            ></div>
+            <div
+              id="green-background-id"
+              class="background-color-box"
+              style="background-color: #a0f8a8"
+              onclick="removeAllActiveBackgrounds(); setBackgroundToActive('green-background-id'); setBackgroundColor('#a0f8a8')"
+            ></div>
+          </div>
+          <div class="menu-row">
+            <button>
+              <img
+                id="forest-image-id"
+                src="./images/forest.jpg"
+                class="background-image"
+                onclick="removeAllActiveBackgrounds(); setBackgroundToActive('forest-image-id');  setBackgroundImage('./images/forest.jpg')"
+              />
+            </button>
+            <button>
+              <img
+                id="wave-image-id"
+                src="./images/wave.jpg"
+                class="background-image"
+                onclick="removeAllActiveBackgrounds(); setBackgroundToActive('wave-image-id');  setBackgroundImage('./images/wave.jpg')"
+              />
+            </button>
+            <button>
+              <img
+                id="nightsky-image-id"
+                src="./images/nightsky.jpg"
+                class="background-image"
+                onclick="removeAllActiveBackgrounds(); setBackgroundToActive('nightsky-image-id'); setBackgroundImage('./images/nightsky.jpg')"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container">
       <div style="position: relative">
         <button class="play-button" onclick="toggleTimer()">
